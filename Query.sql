@@ -1,8 +1,8 @@
 
-SELECT d.emp_no, d.last_name, d.first_name, d.gender, e.salary
-FROM Employees AS d
-FULL OUTER JOIN salaries AS e
-ON d.emp_no = e.emp_no
+SELECT blue.emp_no, blue.last_name, blue.first_name, blue.gender, red.salary
+FROM Employees AS blue
+FULL OUTER JOIN Salaries AS red
+ON blue.emp_no = red.emp_no
 ORDER BY salary DESC;
 
 
@@ -12,21 +12,21 @@ WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
 ORDER BY hire_date ASC;
 
 
-SELECT a.dept_no, a.dept_name, c.emp_no, d.last_name, d.first_name, c.from_date, c.to_date
-FROM Departments AS a
-LEFT JOIN Dept_Manager AS c
-ON a.dept_no = c.dept_no
-LEFT JOIN Employees AS d
-ON c.emp_no = d.emp_no
+SELECT yellow.dept_no, yellow.dept_name, green.emp_no, blue.last_name, blue.first_name, green.from_date, green.to_date
+FROM Departments AS yellow
+LEFT JOIN Dept_Manager AS green
+ON yellow.dept_no = green.dept_no
+LEFT JOIN Employees AS blue
+ON green.emp_no = blue.emp_no
 ORDER BY from_date ASC;
 
 
-SELECT b.emp_no, d.last_name, d.first_name, a.dept_name
-FROM Dept_Emp AS b
-FULL OUTER JOIN Employees AS d
-ON b.emp_no = d.emp_no
-FULL OUTER JOIN Departments AS a
-ON b.dept_no = a.dept_no
+SELECT orange.emp_no, blue.last_name, blue.first_name, yellow.dept_name
+FROM Dept_Emp AS orange
+FULL OUTER JOIN Employees AS blue
+ON orange.emp_no = blue.emp_no
+FULL OUTER JOIN Departments AS yellow
+ON orange.dept_no = yellow.dept_no
 ORDER BY dept_name ASC;
 
 
@@ -38,22 +38,22 @@ ORDER BY last_name ASC;
 
 
 SELECT b.emp_no, d.last_name, d.first_name, a.dept_name
-FROM Dept_Emp AS b
-FULL OUTER JOIN Employees AS d
+FROM Dept_Emp AS orange
+FULL OUTER JOIN Employees AS blue
 ON b.emp_no = d.emp_no
-FULL OUTER JOIN Departments AS a
+FULL OUTER JOIN Departments AS yellow
 ON b.dept_no = a.dept_no
 WHERE a.dept_name = 'Sales'
 ORDER BY last_name ASC;
 
 
-FROM Dept_Emp AS b
-FULL OUTER JOIN Employees AS d
-ON b.emp_no = d.emp_no
-FULL OUTER JOIN Departments AS a
-ON b.dept_no = a.dept_no
-WHERE a.dept_name = 'Sales' 
-OR a.dept_name = 'Development'
+FROM Dept_Emp AS orange
+FULL OUTER JOIN Employees AS blue
+ON orange.emp_no = blue.emp_no
+FULL OUTER JOIN Departments AS yellow
+ON orange.dept_no = yellow.dept_no
+WHERE yellow.dept_name = 'Sales' 
+OR yellow.dept_name = 'Development'
 ORDER BY dept_name ASC;
 
 
